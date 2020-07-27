@@ -35,11 +35,11 @@ public class Categoria implements Serializable{
 		this.id = id;
 	}
 
-	public String getNome() {
+	public String getMarca() {
 		return marca;
 	}
 
-	public void setNome(String marca) {
+	public void setMarca(String marca) {
 		this.marca = marca;
 	}
 	

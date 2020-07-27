@@ -19,4 +19,8 @@ public class CategoriaService {
 		return cat.orElseThrow();
 	}
 	
+	public Categoria insert(Categoria obj) {
+		obj.setId(null);
+		return repository.save(obj);
+	}
 }
