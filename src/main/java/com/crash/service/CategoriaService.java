@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.crash.domain.Categoria;
 import com.crash.domain.dto.CategoriaDTO;
 import com.crash.repositories.CategoriaRepository;
+import com.crash.service.exceptions.ResourceNotFoundException;
 
 @Service
 public class CategoriaService {
@@ -21,7 +22,7 @@ public class CategoriaService {
 	
 	public Categoria findById(Integer id) {
 		Optional<Categoria> cat = repository.findById(id);
-		return cat.orElseThrow();
+		return cat.orElseThrow(() -> new ResourceNotFoundException(id));
 	}
 	
 	public List<Categoria> findAll() {
