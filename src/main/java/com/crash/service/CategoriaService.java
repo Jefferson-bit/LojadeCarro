@@ -33,6 +33,16 @@ public class CategoriaService {
 		return repository.save(obj);
 	}
 	
+	public Categoria update(Categoria obj, Integer id) {
+		Categoria entity = repository.getOne(id);
+		updateData(entity, obj);
+		return repository.save(entity);
+	}
+	
+	public void updateData(Categoria objNew, Categoria obj) {
+		objNew.setMarca(obj.getMarca());
+	}
+	
 	public Categoria fromDto(CategoriaDTO objDto) {
 		return new Categoria(objDto.getId(), objDto.getMarca());
 	}
