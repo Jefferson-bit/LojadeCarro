@@ -8,7 +8,9 @@ import javax.validation.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Length;
 
 import com.crash.domain.Cliente;
+import com.crash.service.validator.ClienteUpdate;
 
+@ClienteUpdate
 public class ClienteDTO implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -17,7 +19,7 @@ public class ClienteDTO implements Serializable{
 	@NotEmpty(message = "Preenchimento Obrigatorio")
 	@Length(min = 5, max = 150, message = "Minimo de 5 a 150 caracteres")
 	private String nome;
-	@Email(message = "Preenchimento Obrigatorio")
+	@Email(message = "Email Invalido")
 	private String email;
 
 	
@@ -25,9 +27,9 @@ public class ClienteDTO implements Serializable{
 	}
 
 	public ClienteDTO(Cliente obj) {
-		this.id = obj.getId();
-		this.nome = obj.getNome();
-		this.email = obj.getEmail();
+		id = obj.getId();
+		nome = obj.getNome();
+		email = obj.getEmail();
 	}	
 	
 	public Integer getId() {
@@ -38,7 +40,7 @@ public class ClienteDTO implements Serializable{
 		this.id = id;
 	}
 
-	public String getNome() {
+	public String getNome() {	
 		return nome;
 	}
 

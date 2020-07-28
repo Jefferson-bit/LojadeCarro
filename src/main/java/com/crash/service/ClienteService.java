@@ -22,8 +22,8 @@ public class ClienteService {
 	private ClienteRepository repository;
 	
 	public Cliente findById(Integer id) {
-		Optional<Cliente> cat = repository.findById(id);
-		return cat.orElseThrow(() -> new ResourceNotFoundException(id));
+		Optional<Cliente> cli = repository.findById(id);
+		return cli.orElseThrow(() -> new ResourceNotFoundException(id));
 	}
 	
 	public List<Cliente> findAll() {
@@ -47,8 +47,8 @@ public class ClienteService {
 	}
 	
 	public void updateData(Cliente objNew, Cliente obj) {
-		objNew.setEmail(obj.getEmail());
 		objNew.setNome(obj.getNome());
+		objNew.setEmail(obj.getEmail());
 	}
 	
 	public Page<Cliente> findPage(Integer page, Integer linesPerPage, String orderBy, String direction){
