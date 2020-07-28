@@ -16,7 +16,6 @@ import com.crash.service.exceptions.ResourceNotFoundException;
 @ControllerAdvice
 public class ResourceExceptionHandler {
 		
-	
 	@ExceptionHandler(ResourceNotFoundException.class)
 	public ResponseEntity<StandaError> resourceNotFound(ResourceNotFoundException ex, HttpServletRequest request){
 		String err = "Resource not Found";

@@ -8,7 +8,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import com.crash.domain.Categoria;
+import com.crash.domain.Cliente;
 import com.crash.repositories.CategoriaRepository;
+import com.crash.repositories.ClienteRepository;
 
 @Configuration
 @Profile("test")
@@ -16,7 +18,10 @@ import com.crash.repositories.CategoriaRepository;
 public class TestConfig implements CommandLineRunner{
 
 	@Autowired
-	private CategoriaRepository repository;
+	private CategoriaRepository catRepository;
+	
+	@Autowired
+	private ClienteRepository cliRepository;
 	
 	@Override
 	public void run(String... args) throws Exception {
@@ -27,7 +32,11 @@ public class TestConfig implements CommandLineRunner{
 		Categoria cat4 = new Categoria(null, "Citroen");
 		Categoria cat5 = new Categoria(null, "Honda");
 		
-		repository.saveAll(Arrays.asList(cat1,cat2,cat3,cat4,cat5));
+		catRepository.saveAll(Arrays.asList(cat1,cat2,cat3,cat4,cat5));
+		
+		Cliente cli1 = new Cliente(null, "Crash", "crashnight089@gmail.com", "123");
+		Cliente cli2 = new Cliente(null, "Alex", "alex@gmail.com", "123");
+		cliRepository.saveAll(Arrays.asList(cli1,cli2));
 	}
 
 }
