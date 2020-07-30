@@ -13,7 +13,7 @@ public class VeiculoNewDTO implements Serializable {
 	private String modelo;
 	private Date ano;
 	private Double preco;
-	
+	private String tipoVeiculo;
 	private Integer categoriaId;
 	
 	public VeiculoNewDTO() {
@@ -24,6 +24,7 @@ public class VeiculoNewDTO implements Serializable {
 		modelo = obj.getModelo();
 		ano = obj.getAno();
 		preco = obj.getPreco();
+		tipoVeiculo = obj.getTipoVeiculo();
 	}
 
 	public Integer getId() {
@@ -64,6 +65,14 @@ public class VeiculoNewDTO implements Serializable {
 
 	public void setCategoriaId(Integer categoriaId) {
 		this.categoriaId = categoriaId;
+	}
+
+	public String getTipoVeiculo() {
+		return tipoVeiculo;
+	}
+
+	public void setTipoVeiculo(String tipoVeiculo) {
+		this.tipoVeiculo = tipoVeiculo;
 	}
 	
 	

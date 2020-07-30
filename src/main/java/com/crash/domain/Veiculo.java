@@ -1,21 +1,15 @@
 package com.crash.domain;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "tb_veiculo")
@@ -28,7 +22,7 @@ public class Veiculo implements Serializable{
 	private String modelo;
 	private Date ano;
 	private Double preco;
-	
+	private String tipoVeiculo;
 	
 	@ManyToOne
 	@JoinColumn(name = "categorias_id")
@@ -37,13 +31,14 @@ public class Veiculo implements Serializable{
 	public Veiculo() {
 	}
 
-	public Veiculo(Integer id, String modelo, Date ano, Double preco, Categoria categorias) {
+	public Veiculo(Integer id, String modelo, Date ano, Double preco, String tipoVeiculo, Categoria categorias) {
 		super();
 		this.id = id;
 		this.modelo = modelo;
 		this.ano = ano;
 		this.preco = preco;
 		this.categorias = categorias;
+		this.tipoVeiculo = tipoVeiculo;
 	}
 
 	public Integer getId() {
@@ -76,6 +71,14 @@ public class Veiculo implements Serializable{
 
 	public void setPreco(Double preco) {
 		this.preco = preco;
+	}
+	
+	public String getTipoVeiculo() {
+		return tipoVeiculo;
+	}
+
+	public void setTipoVeiculo(String tipoVeiculo) {
+		this.tipoVeiculo = tipoVeiculo;
 	}
 
 	public Categoria getCategorias() {

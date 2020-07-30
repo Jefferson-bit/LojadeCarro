@@ -55,16 +55,17 @@ public class VeiculoService {
 		objNew.setModelo(obj.getModelo());
 		objNew.setPreco(obj.getPreco());
 		objNew.setAno(obj.getAno());
+		objNew.setTipoVeiculo(obj.getTipoVeiculo());
 	}
 	
 	public Veiculo fromNewDto(VeiculoNewDTO objDto) {
 		Categoria cat = new Categoria(objDto.getCategoriaId(), null);
-		Veiculo vei = new Veiculo(null, objDto.getModelo(), objDto.getAno(), objDto.getPreco(), cat);
+		Veiculo vei = new Veiculo(null, objDto.getModelo(), objDto.getAno(), objDto.getPreco(), objDto.getTipoVeiculo(), cat);
 		return vei;
 	}
 	
 	public Veiculo fromDTO(VeiculoDTO objDto) {	
-		return new Veiculo(objDto.getId(), objDto.getModelo(), objDto.getAno() ,objDto.getPreco(), null);
+		return new Veiculo(objDto.getId(), objDto.getModelo(), objDto.getAno() ,objDto.getPreco(), objDto.getTipoVeiculo(), null);
 	}
 
 	public Page<Veiculo> search(List<Integer>ids, String modelo, Integer page, Integer linesPerPage, String orderBy, String direction){

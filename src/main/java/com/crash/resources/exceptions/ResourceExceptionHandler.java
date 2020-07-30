@@ -33,8 +33,6 @@ public class ResourceExceptionHandler {
 		return ResponseEntity.status(status).body(error);
 	}
 	
-	
-	
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public ResponseEntity<StandaError> validation(MethodArgumentNotValidException ex, HttpServletRequest request){
 		String err = "Constraint Validation";
