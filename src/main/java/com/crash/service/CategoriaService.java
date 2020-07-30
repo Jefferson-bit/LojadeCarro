@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import com.crash.domain.Categoria;
 import com.crash.domain.dto.CategoriaDTO;
 import com.crash.repositories.CategoriaRepository;
+import com.crash.service.exceptions.DataBaseException;
 import com.crash.service.exceptions.ResourceNotFoundException;
 
 @Service
@@ -36,7 +38,11 @@ public class CategoriaService {
 	
 	public void delete(Integer id) {
 	    findById(id);
+	    try {
 		repository.deleteById(id);
+	    }catch(DataIntegrityViolationException e) {
+	    	throw new DataBaseException("Não é possível excluir uma categoria que contenha Veiculos");
+	    }
 	}
 	
 	public Categoria update(Categoria obj, Integer id) {
