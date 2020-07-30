@@ -2,9 +2,9 @@ package com.crash.domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,29 +16,31 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name = "tb_cliente")
-public class Cliente implements Serializable{
-
+@Table(name = "tb_veiculo")
+public class Veiculo implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy =  GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private String nome;
-	@Column(unique = true)
-	private String email;
+	private String modelo;
+	private Date ano;
+	private Double preco;
 	
-	@JsonIgnore
-	private String senha;
+	@ManyToOne
+	@JoinColumn( name = "categorias_id")
+	private Categoria categorias;
 	
-	public Cliente() {
+	public Veiculo() {
 	}
-	
-	public Cliente(Integer id, String nome, String email, String senha) {
+
+	public Veiculo(Integer id, String modelo, Date ano, Double preco, Categoria categorias) {
+		super();
 		this.id = id;
-		this.nome = nome;
-		this.email = email;
-		this.senha = senha;
+		this.modelo = modelo;
+		this.ano = ano;
+		this.preco = preco;
+		this.categorias = categorias;
 	}
 
 	public Integer getId() {
@@ -49,29 +51,36 @@ public class Cliente implements Serializable{
 		this.id = id;
 	}
 
-	public String getNome() {
-		return nome;
+	public String getModelo() {
+		return modelo;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setModelo(String modelo) {
+		this.modelo = modelo;
 	}
 
-
-	public String getEmail() {
-		return email;
+	public Date getAno() {
+		return ano;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setAno(Date ano) {
+		this.ano = ano;
 	}
-	
-	public String getSenha() {
-		return senha;
+
+	public Double getPreco() {
+		return preco;
 	}
-	
-	public void setSenha(String senha) {
-		this.senha = senha;
+
+	public void setPreco(Double preco) {
+		this.preco = preco;
+	}
+
+	public Categoria getCategorias() {
+		return categorias;
+	}
+
+	public void setCategorias(Categoria categorias) {
+		this.categorias = categorias;
 	}
 
 	@Override
@@ -90,7 +99,7 @@ public class Cliente implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Cliente other = (Cliente) obj;
+		Veiculo other = (Veiculo) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
