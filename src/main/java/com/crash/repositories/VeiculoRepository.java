@@ -15,9 +15,14 @@ import com.crash.domain.Veiculo;
 
 @Repository
 public interface VeiculoRepository extends JpaRepository<Veiculo, Integer> {
+
+	@Transactional(readOnly = true)
+	@Query("SELECT DISTINCT obj FROM Veiculo obj INNER JOIN obj.categorias cat WHERE obj.modelo LIKE %:modelo% AND cat IN :categorias")
+	Page<Veiculo> search(@Param("modelo")String modelo, @Param("categorias") List<Categoria> categorias, Pageable pgRequest);
 	
-//	@Transactional(readOnly = true)
-//	@Query("SELECT DISTINCT obj FROM Veiculo obj INNER JOIN obj.categorias cat WHERE obj.modelo LIKE%:modelo% AND cat IN : categorias")
-//	Page<Veiculo> search(@Param("modelo")String modelo, @Param("categorias") List<Categoria> categoria, Pageable pgRequest);
-//	
+	@Transactional(readOnly = true)
+	//usando padrão de nomes do spring data
+	Page<Veiculo> findDistinctByModeloIgnoreCaseContainingAndCategoriasIn(@Param("modelo")String modelo, @Param("categorias") List<Categoria> categorias, Pageable pgRequest);
+	
+
 }

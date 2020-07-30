@@ -35,7 +35,7 @@ public class CategoriaService {
 	}
 	
 	public void delete(Integer id) {
-		Categoria obj = findById(id);
+	    findById(id);
 		repository.deleteById(id);
 	}
 	

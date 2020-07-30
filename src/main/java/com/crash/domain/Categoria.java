@@ -11,8 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 
 @Entity
 @Table(name = "tb_categoria")
@@ -25,7 +23,7 @@ public class Categoria implements Serializable{
 	private Integer id;
 	private String marca;
 	
-	@JsonIgnore
+
 	@OneToMany(mappedBy = "categorias")
 	private List<Veiculo> veiculos = new ArrayList<>();
 	
@@ -51,6 +49,10 @@ public class Categoria implements Serializable{
 
 	public void setMarca(String marca) {
 		this.marca = marca;
+	}
+
+	public List<Veiculo> getVeiculos() {
+		return veiculos;
 	}
 
 	@Override

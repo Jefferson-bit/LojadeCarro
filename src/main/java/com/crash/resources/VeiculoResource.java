@@ -23,6 +23,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.crash.domain.Veiculo;
 import com.crash.domain.dto.VeiculoDTO;
 import com.crash.domain.dto.VeiculoNewDTO;
+import com.crash.resources.utils.URL;
 import com.crash.service.VeiculoService;
 
 @RestController
@@ -45,13 +46,17 @@ public class VeiculoResource {
 		return ResponseEntity.ok().body(listDto);
 	}
 	
-	@GetMapping(value ="/page")
+	@GetMapping(value = "/page")
 	public ResponseEntity<Page<VeiculoDTO>> findPage(
-		@RequestParam(value = "page", defaultValue = "0") Integer page,
-		@RequestParam(value = "linesPerPage", defaultValue = "24") Integer linesPerPage,
-		@RequestParam(value = "orderBy", defaultValue = "modelo") String orderBy,
-		@RequestParam(value = "direction", defaultValue = "ASC") String direction){
-		Page<Veiculo> list = service.findPage(page, linesPerPage, orderBy, direction);
+			@RequestParam(value = "modelo", defaultValue = "") String modelo,
+			@RequestParam(value = "categorias", defaultValue = "") String categorias,
+			@RequestParam(value = "page", defaultValue = "0") Integer page,
+			@RequestParam(value = "linesPerPage", defaultValue = "24") Integer linesPerPage,
+			@RequestParam(value = "orderBy", defaultValue = "modelo") String orderBy,
+			@RequestParam(value = "direction", defaultValue = "ASC") String direction){
+		List<Integer> ids = URL.decodeItens(categorias);
+		String nomeDecode = URL.decodeParam(modelo);
+		Page<Veiculo> list = service.search(ids, nomeDecode, page, linesPerPage, orderBy, direction);
 		Page<VeiculoDTO> listDto = list.map(obj -> new VeiculoDTO(obj));
 		return ResponseEntity.ok().body(listDto);
 	}

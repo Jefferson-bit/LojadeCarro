@@ -13,6 +13,7 @@ import com.crash.domain.Categoria;
 import com.crash.domain.Veiculo;
 import com.crash.domain.dto.VeiculoDTO;
 import com.crash.domain.dto.VeiculoNewDTO;
+import com.crash.repositories.CategoriaRepository;
 import com.crash.repositories.VeiculoRepository;
 import com.crash.service.exceptions.ResourceNotFoundException;
 
@@ -21,6 +22,9 @@ public class VeiculoService {
 	
 	@Autowired
 	private VeiculoRepository repository;
+	
+	@Autowired
+	private CategoriaRepository catRepository;
 	
 	public Veiculo findById(Integer id) {
 		Optional<Veiculo> cat = repository.findById(id);
@@ -62,9 +66,10 @@ public class VeiculoService {
 	public Veiculo fromDTO(VeiculoDTO objDto) {	
 		return new Veiculo(objDto.getId(), objDto.getModelo(), objDto.getAno() ,objDto.getPreco(), null);
 	}
-	
-	public Page<Veiculo> findPage(Integer page, Integer linesPerPage, String orderBy, String direction){
+
+	public Page<Veiculo> search(List<Integer>ids, String modelo, Integer page, Integer linesPerPage, String orderBy, String direction){
 		PageRequest pgRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
-		return repository.findAll(pgRequest);
+		List<Categoria> categorias = catRepository.findAllById(ids);
+		return repository.findDistinctByModeloIgnoreCaseContainingAndCategoriasIn(modelo, categorias, pgRequest);
 	}
 }

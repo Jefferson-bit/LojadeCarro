@@ -2,9 +2,8 @@ package com.crash.resources.utils;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class URL {
 
@@ -12,12 +11,19 @@ public class URL {
 		try {
 			return URLDecoder.decode(s, "UTF-8");
 		} catch (UnsupportedEncodingException e) {
-			return null;
+			return "";
 		}
 	}
 	
-	public static List<Integer> decodeItens(String s) {
-		return Arrays.asList(s.split(",")).stream().map(x -> Integer.parseInt(s)).collect(Collectors.toList());
+	public static List<Integer> decodeItens(String s) {	
+		String vect[] = s.split(",");
+		List<Integer> list = new ArrayList<>();
+		for (int i = 0; i<vect.length; i++) {
+			list.add(Integer.parseInt(vect[i]));
+		}
+		return list;
+		
+//		return Arrays.asList(s.split(",")).stream().map(x -> Integer.parseInt(x)).collect(Collectors.toList());
 	}
 
 }
