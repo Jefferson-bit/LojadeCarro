@@ -19,6 +19,10 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+import com.crash.security.JWTAuthenticationFilter;
+import com.crash.security.JWTAuthorizationFilter;
+import com.crash.security.JWTUtil;
+
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -29,6 +33,9 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter{
 	
 	@Autowired
 	private UserDetailsService userDetailsService;
+	
+	@Autowired
+	private JWTUtil jwtUtil;
 	
 	private static final String[] MATCHER ={
 			"/h2-console/**"
@@ -51,6 +58,8 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter{
 		.antMatchers(HttpMethod.GET, MATCHER_GET).permitAll()
 		.antMatchers(MATCHER).permitAll()
 		.anyRequest().authenticated();
+		http.addFilter(new JWTAuthenticationFilter(authenticationManager(), jwtUtil));
+		http.addFilter(new JWTAuthorizationFilter(authenticationManager(), userDetailsService, jwtUtil));
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 	}
 	
