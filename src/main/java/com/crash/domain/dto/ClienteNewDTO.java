@@ -12,7 +12,6 @@ import com.crash.service.validator.ClienteInsert;
 
 @ClienteInsert
 public class ClienteNewDTO implements Serializable{
-
 	private static final long serialVersionUID = 1L;
 	
 	private Integer id;
@@ -66,6 +65,4 @@ public class ClienteNewDTO implements Serializable{
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	
-	
 }

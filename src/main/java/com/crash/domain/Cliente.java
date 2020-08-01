@@ -2,17 +2,21 @@ package com.crash.domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
 
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.crash.domain.enums.Perfil;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -28,10 +32,15 @@ public class Cliente implements Serializable{
 	@Column(unique = true)
 	private String email;
 	
+	@ElementCollection(fetch = FetchType.EAGER)
+	@CollectionTable(name = "PERFIS")
+	private Set<Integer> perfis = new HashSet<>();
+	
 	@JsonIgnore
 	private String senha;
 	
 	public Cliente() {
+		addPerfil(Perfil.CLIENTE);
 	}
 	
 	public Cliente(Integer id, String nome, String email, String senha) {
@@ -39,6 +48,7 @@ public class Cliente implements Serializable{
 		this.nome = nome;
 		this.email = email;
 		this.senha = senha;
+		addPerfil(Perfil.CLIENTE);
 	}
 
 	public Integer getId() {
@@ -57,7 +67,6 @@ public class Cliente implements Serializable{
 		this.nome = nome;
 	}
 
-
 	public String getEmail() {
 		return email;
 	}
@@ -74,6 +83,14 @@ public class Cliente implements Serializable{
 		this.senha = senha;
 	}
 
+	public Set<Perfil> getPerfil() {
+		return perfis.stream().map(x -> Perfil.toEnums(x)).collect(Collectors.toSet());
+	}
+	
+	public void addPerfil(Perfil perfil) {
+		perfis.add(perfil.getCode());
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

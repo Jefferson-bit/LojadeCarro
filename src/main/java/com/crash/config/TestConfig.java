@@ -12,6 +12,7 @@ import com.crash.domain.Categoria;
 import com.crash.domain.Cliente;
 import com.crash.domain.Detalhes;
 import com.crash.domain.Veiculo;
+import com.crash.domain.enums.Perfil;
 import com.crash.repositories.CategoriaRepository;
 import com.crash.repositories.ClienteRepository;
 import com.crash.repositories.DetalhesRepository;
@@ -67,6 +68,7 @@ public class TestConfig implements CommandLineRunner{
 	
 		Cliente cli1 = new Cliente(null, "Crash", "crashnight089@gmail.com", "123");
 		Cliente cli2 = new Cliente(null, "Alex", "alex@gmail.com", "123");
+		cli2.addPerfil(Perfil.ADMIN);
 		cliRepository.saveAll(Arrays.asList(cli1,cli2));
 	}
 
