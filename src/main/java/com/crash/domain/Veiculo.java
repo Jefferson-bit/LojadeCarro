@@ -28,17 +28,21 @@ public class Veiculo implements Serializable{
 	@JoinColumn(name = "categorias_id")
 	private Categoria categorias;
 	
+	@ManyToOne
+	@JoinColumn(name = "detalhes_id")
+	private Detalhes detalhes;
+	
 	public Veiculo() {
 	}
 
-	public Veiculo(Integer id, String modelo, Date ano, Double preco, String tipoVeiculo, Categoria categorias) {
-		super();
+	public Veiculo(Integer id, String modelo, Date ano, Double preco, String tipoVeiculo, Categoria categorias, Detalhes detalhes) {
 		this.id = id;
 		this.modelo = modelo;
 		this.ano = ano;
 		this.preco = preco;
 		this.categorias = categorias;
 		this.tipoVeiculo = tipoVeiculo;
+		this.detalhes = detalhes;
 	}
 
 	public Integer getId() {
@@ -87,6 +91,14 @@ public class Veiculo implements Serializable{
 
 	public void setCategorias(Categoria categorias) {
 		this.categorias = categorias;
+	}
+
+	public Detalhes getDetalhes() {
+		return detalhes;
+	}
+
+	public void setDetalhes(Detalhes detalhes) {
+		this.detalhes = detalhes;
 	}
 
 	@Override

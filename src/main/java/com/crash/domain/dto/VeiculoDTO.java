@@ -15,6 +15,7 @@ public class VeiculoDTO implements Serializable {
 	private Double preco;
 	private String tipoVeiculo;
 	
+	
 	public VeiculoDTO() {
 	}
 	
@@ -65,5 +66,5 @@ public class VeiculoDTO implements Serializable {
 	public void setTipoVeiculo(String tipoVeiculo) {
 		this.tipoVeiculo = tipoVeiculo;
 	}
-	
+
 }

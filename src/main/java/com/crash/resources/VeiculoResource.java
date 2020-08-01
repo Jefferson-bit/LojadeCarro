@@ -70,7 +70,7 @@ public class VeiculoResource {
 	}
 	
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<VeiculoDTO> update(@Valid @PathVariable Integer id, @RequestBody VeiculoDTO objDto){
+	public ResponseEntity<VeiculoNewDTO> update(@Valid @PathVariable Integer id, @RequestBody VeiculoNewDTO objDto){
 		Veiculo entity = service.fromDTO(objDto);
 		entity.setId(id);
 		entity = service.update(entity, id);

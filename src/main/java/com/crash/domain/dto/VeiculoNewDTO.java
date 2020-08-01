@@ -14,7 +14,17 @@ public class VeiculoNewDTO implements Serializable {
 	private Date ano;
 	private Double preco;
 	private String tipoVeiculo;
+	
+	private String marca;
 	private Integer categoriaId;
+	private Integer detalhesId;
+	
+	private String cor;
+	private Double kmRodado;
+	private Integer portas;
+	private String cambio;
+	private String informacoes;
+	
 	
 	public VeiculoNewDTO() {
 	}
@@ -74,6 +84,60 @@ public class VeiculoNewDTO implements Serializable {
 	public void setTipoVeiculo(String tipoVeiculo) {
 		this.tipoVeiculo = tipoVeiculo;
 	}
-	
-	
+
+	public String getCor() {
+		return cor;
+	}
+
+	public void setCor(String cor) {
+		this.cor = cor;
+	}
+
+	public Double getKmRodado() {
+		return kmRodado;
+	}
+
+	public void setKmRodado(Double kmRodado) {
+		this.kmRodado = kmRodado;
+	}
+
+	public Integer getPortas() {
+		return portas;
+	}
+
+	public void setPortas(Integer portas) {
+		this.portas = portas;
+	}
+
+	public String getCambio() {
+		return cambio;
+	}
+
+	public void setCambio(String cambio) {
+		this.cambio = cambio;
+	}
+
+	public String getInformacoes() {
+		return informacoes;
+	}
+
+	public void setInformacoes(String informacoes) {
+		this.informacoes = informacoes;
+	}
+
+	public Integer getDetalhesId() {
+		return detalhesId;
+	}
+
+	public void setDetalhesId(Integer detalhesId) {
+		this.detalhesId = detalhesId;
+	}
+
+	public String getMarca() {
+		return marca;
+	}
+
+	public void setMarca(String marca) {
+		this.marca = marca;
+	}
 }
