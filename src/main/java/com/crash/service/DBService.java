@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.crash.domain.Categoria;
@@ -30,6 +31,8 @@ public class DBService{
 		
 		@Autowired
 		private DetalhesRepository detRepository;
+		
+		@Autowired BCryptPasswordEncoder pe;
 		
 		private static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
@@ -62,8 +65,8 @@ public class DBService{
 			
 		veiRepository.saveAll(Arrays.asList(vei1,vei2,vei3,vei4,vei5,vei6));
 		
-		Cliente cli1 = new Cliente(null, "Crash", "crashnight089@gmail.com", "123");
-		Cliente cli2 = new Cliente(null, "Alex", "alex@gmail.com", "123");
+		Cliente cli1 = new Cliente(null, "Crash", "crashnight089@gmail.com", pe.encode("123"));
+		Cliente cli2 = new Cliente(null, "Alex", "alex@gmail.com", pe.encode("123"));
 		cli2.addPerfil(Perfil.ADMIN);
 		cliRepository.saveAll(Arrays.asList(cli1,cli2));
 	}

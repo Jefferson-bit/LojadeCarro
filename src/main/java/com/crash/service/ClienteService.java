@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.crash.domain.Cliente;
@@ -20,6 +21,9 @@ public class ClienteService {
 	
 	@Autowired
 	private ClienteRepository repository;
+	
+	@Autowired
+	private BCryptPasswordEncoder pe;
 	
 	public Cliente findById(Integer id) {
 		Optional<Cliente> cli = repository.findById(id);
@@ -61,6 +65,6 @@ public class ClienteService {
 	}
 	
 	public Cliente fromNewDTO(ClienteNewDTO objDto) {
-		return new Cliente(objDto.getId(), objDto.getNome(), objDto.getEmail(), objDto.getSenha());
+		return new Cliente(objDto.getId(), objDto.getNome(), objDto.getEmail(), pe.encode(objDto.getSenha()));
 	}
 }
