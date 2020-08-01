@@ -3,6 +3,10 @@ package com.crash.domain.dto;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.Length;
+
 import com.crash.domain.Veiculo;
 
 public class VeiculoNewDTO implements Serializable {
@@ -10,19 +14,34 @@ public class VeiculoNewDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Integer id;
+	@NotEmpty(message = "Preenchimento Obrigatorio")
+	@Length(min = 5, max = 150, message = "Minimo de 5 a 150 caracteres")
 	private String modelo;
+	@NotEmpty(message = "Preenchimento Obrigatorio")
 	private Date ano;
+	@NotEmpty(message = "Preenchimento Obrigatorio")
 	private Double preco;
+	@NotEmpty(message = "Preenchimento Obrigatorio")
 	private String tipoVeiculo;
 	
 	private String marca;
 	private Integer categoriaId;
 	private Integer detalhesId;
 	
+	@NotEmpty(message = "Preenchimento Obrigatorio")
+	@Length(min = 5, max = 150, message = "Minimo de 5 a 150 caracteres")
 	private String cor;
+	@NotEmpty(message = "Preenchimento Obrigatorio")
+	@Length(min = 5, max = 150, message = "Minimo de 5 a 150 caracteres")
 	private Double kmRodado;
+	@NotEmpty(message = "Preenchimento Obrigatorio")
+	@Length(min = 2, max = 8, message = "Minimo de 2 a 8 caracteres")
 	private Integer portas;
+	@NotEmpty(message = "Preenchimento Obrigatorio")
+	@Length(min = 5, max = 150, message = "Minimo de 5 a 150 caracteres")
 	private String cambio;
+	@NotEmpty(message = "Preenchimento Obrigatorio")
+	@Length(min = 5, max = 3000, message = "Minimo de 5 a 3000 caracteres")
 	private String informacoes;
 	
 	
