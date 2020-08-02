@@ -18,6 +18,9 @@ public class UserSS implements UserDetails {
 	private String password;
 	private Collection<? extends GrantedAuthority> authorities;
 	
+	public UserSS() {
+	}
+	
 	public UserSS(Integer id, String email, String password, Set<Perfil> perfil) {
 		this.id = id;
 		this.email = email;

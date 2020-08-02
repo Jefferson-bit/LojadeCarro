@@ -13,7 +13,10 @@ import org.springframework.stereotype.Service;
 import com.crash.domain.Cliente;
 import com.crash.domain.dto.ClienteDTO;
 import com.crash.domain.dto.ClienteNewDTO;
+import com.crash.domain.enums.Perfil;
 import com.crash.repositories.ClienteRepository;
+import com.crash.security.UserSS;
+import com.crash.service.exceptions.AuthorizationException;
 import com.crash.service.exceptions.ResourceNotFoundException;
 
 @Service
@@ -26,8 +29,25 @@ public class ClienteService {
 	private BCryptPasswordEncoder pe;
 	
 	public Cliente findById(Integer id) {
+		UserSS user = UserService.authenticated();
+		if(user == null || !user.hasRole(Perfil.ADMIN) && !id.equals(user.getId())) {
+			throw new AuthorizationException("Acesso negado");
+		}
+		
 		Optional<Cliente> cli = repository.findById(id);
 		return cli.orElseThrow(() -> new ResourceNotFoundException(id));
+	}
+	
+	public Cliente findByEmail(String email) {
+		UserSS user = UserService.authenticated();
+		if(user == null || !user.hasRole(Perfil.ADMIN) && !email.equals(user.getUsername())) {
+			throw new AuthorizationException("Acesso Negado");
+		}
+		Cliente cli = repository.findByEmail(email);
+		if(cli == null) {
+			throw new ResourceNotFoundException(email);
+		}
+		return cli;
 	}
 	
 	public List<Cliente> findAll() {

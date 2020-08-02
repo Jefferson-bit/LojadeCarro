@@ -11,6 +11,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import com.crash.service.exceptions.AuthorizationException;
 import com.crash.service.exceptions.DataBaseException;
 import com.crash.service.exceptions.ResourceNotFoundException;
 
@@ -29,6 +30,14 @@ public class ResourceExceptionHandler {
 	public ResponseEntity<StandaError> database(DataBaseException ex, HttpServletRequest request){
 		String err = "DataBase Error";
 		HttpStatus status = HttpStatus.BAD_REQUEST;
+		StandaError error = new StandaError(new Date(), status.value(), err, ex.getMessage(), request.getRequestURI());
+		return ResponseEntity.status(status).body(error);
+	}
+	
+	@ExceptionHandler(AuthorizationException.class)
+	public ResponseEntity<StandaError> authorization(AuthorizationException ex, HttpServletRequest request){
+		String err = "Error Forbidden";
+		HttpStatus status = HttpStatus.FORBIDDEN;
 		StandaError error = new StandaError(new Date(), status.value(), err, ex.getMessage(), request.getRequestURI());
 		return ResponseEntity.status(status).body(error);
 	}

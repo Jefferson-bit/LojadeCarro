@@ -35,7 +35,6 @@ public class DBService{
 		@Autowired BCryptPasswordEncoder pe;
 		
 		private static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-
 	
 		public void instanteDataBase() throws Exception {
 			
