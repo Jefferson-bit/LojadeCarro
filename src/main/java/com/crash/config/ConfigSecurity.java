@@ -46,6 +46,11 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter{
 			"/veiculos/**"
 	};
 	
+	private static final String[] MATCHER_POST ={ 
+			"/clientes/**",
+			"/auth/forgot/**"
+	};
+	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		
@@ -56,6 +61,7 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter{
 		http.cors().and().csrf().disable();
 		http.authorizeRequests()
 		.antMatchers(HttpMethod.GET, MATCHER_GET).permitAll()
+		.antMatchers(HttpMethod.POST, MATCHER_POST).permitAll()
 		.antMatchers(MATCHER).permitAll()
 		.anyRequest().authenticated();
 		http.addFilter(new JWTAuthenticationFilter(authenticationManager(), jwtUtil));
