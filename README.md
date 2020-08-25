@@ -1,6 +1,6 @@
 # Sobre o projeto
 O projeto é voltado ao desenvolvimento de um sistema de venda de carros, no qual o usuario poderá se cadastrar para ter acesso as informações
-dos veiculos, que por sua vez, possui informações do automovel, tais como: imagens, modelo, preço, ano, cor, portas, cambio entre outros.
+dos veiculos, que por sua vez, possui informações tais como: imagens, modelo, preço, ano, cor, portas, cambio entre outros.
 O sistema disponibiliza uma recuperação de senha, caso hajá esquecimento por parte do usuario.
 O Administrador terá acesso ao gerenciamento da loja de carro, que consiste na inserção de um novo veiculo,
 atualização do proprio e até mesmo a exclusão, tornando o sistema bem flexivel e fácil de dar manuntenção. 
