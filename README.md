@@ -14,6 +14,7 @@ Nesse projeto utilizei:
 * STS 4.6.0 RELEASE
 * Maven 4.0.0
 * Spring Security
+* JPA
 * JWT 0.7.0
 * MYSQL 8.0.15
 * H2 Database (Banco de dados utilizado para ambiente de teste)
