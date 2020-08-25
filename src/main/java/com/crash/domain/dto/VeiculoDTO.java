@@ -25,6 +25,13 @@ public class VeiculoDTO implements Serializable {
 	@Length(min = 5, max = 150, message = "Minimo de 5 a 150 caracteres")
 	private String tipoVeiculo;
 	
+	private String cor;
+	private Double kmRodado;
+	private Integer portas;
+	private String cambio;
+	private String informacoes;
+	private Integer categoriaId;
+	
 	public VeiculoDTO() {
 	}
 	
@@ -34,6 +41,12 @@ public class VeiculoDTO implements Serializable {
 		ano = obj.getAno();
 		preco = obj.getPreco();
 		tipoVeiculo = obj.getTipoVeiculo();
+		cor = obj.getDetalhes().getCor();
+		kmRodado = obj.getDetalhes().getKmRodado();
+		portas = obj.getDetalhes().getPortas();
+		cambio = obj.getDetalhes().getCambio();
+		informacoes = obj.getDetalhes().getInformacoes();
+		categoriaId = obj.getCategorias().getId();
 	}
 
 	public Integer getId() {
@@ -76,4 +89,54 @@ public class VeiculoDTO implements Serializable {
 		this.tipoVeiculo = tipoVeiculo;
 	}
 
+	public String getCor() {
+		return cor;
+	}
+
+	public void setCor(String cor) {
+		this.cor = cor;
+	}
+
+	public Double getKmRodado() {
+		return kmRodado;
+	}
+
+	public void setKmRodado(Double kmRodado) {
+		this.kmRodado = kmRodado;
+	}
+
+	public Integer getPortas() {
+		return portas;
+	}
+
+	public void setPortas(Integer portas) {
+		this.portas = portas;
+	}
+
+	public String getCambio() {
+		return cambio;
+	}
+
+	public void setCambio(String cambio) {
+		this.cambio = cambio;
+	}
+
+	public String getInformacoes() {
+		return informacoes;
+	}
+
+	public void setInformacoes(String informacoes) {
+		this.informacoes = informacoes;
+	}
+
+	public Integer getCategoriaId() {
+		return categoriaId;
+	}
+
+	public void setCategoriaId(Integer categoriaId) {
+		this.categoriaId = categoriaId;
+	}
+
+	
+	
 }

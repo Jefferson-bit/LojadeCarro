@@ -43,12 +43,17 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter{
 		
 	private static final String[] MATCHER_GET ={ 
 			"/categorias/**",
-			"/veiculos/**"
+			"/veiculos/**",
+			"/detalhes/**",
+			"/imagem/**",
+			"/file/**"
 	};
 	
 	private static final String[] MATCHER_POST ={ 
 			"/clientes/**",
-			"/auth/forgot/**"
+			"/imagem/**",
+			"/auth/forgot/**",
+			"/file/upload/**"
 	};
 	
 	@Override

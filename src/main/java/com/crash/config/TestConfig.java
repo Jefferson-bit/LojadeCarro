@@ -7,7 +7,6 @@ import org.springframework.context.annotation.Profile;
 
 import com.crash.service.DBService;
 import com.crash.service.EmailService;
-import com.crash.service.MockEmailService;
 import com.crash.service.SMTPEmailServiceImpl;
 
 @Configuration

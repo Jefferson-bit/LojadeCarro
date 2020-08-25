@@ -13,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.crash.domain.Categoria;
 import com.crash.domain.Detalhes;
 import com.crash.domain.Veiculo;
-import com.crash.domain.dto.VeiculoDTO;
 import com.crash.domain.dto.VeiculoNewDTO;
 import com.crash.repositories.CategoriaRepository;
 import com.crash.repositories.DetalhesRepository;
@@ -77,13 +76,14 @@ public class VeiculoService {
 	}
 	
 	public Veiculo fromDTO(VeiculoNewDTO objDto) {
-		Detalhes det = new Detalhes(null, objDto.getCor(), objDto.getKmRodado(), objDto.getPortas(), objDto.getCambio(), objDto.getInformacoes());
+		Detalhes det = new Detalhes(objDto.getDetalhesId(), objDto.getCor(), objDto.getKmRodado(), objDto.getPortas(), objDto.getCambio(), objDto.getInformacoes());
 		return new Veiculo(objDto.getId(), objDto.getModelo(), objDto.getAno() ,objDto.getPreco(), objDto.getTipoVeiculo(), null, det); 
 	}
 
 	public Page<Veiculo> search(List<Integer>ids, String modelo, Integer page, Integer linesPerPage, String orderBy, String direction){
 		PageRequest pgRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		List<Categoria> categorias = catRepository.findAllById(ids);
+		
 		return repository.findDistinctByModeloIgnoreCaseContainingAndCategoriasIn(modelo, categorias, pgRequest);
 	}
 }

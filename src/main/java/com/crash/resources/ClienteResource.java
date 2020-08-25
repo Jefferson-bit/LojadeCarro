@@ -24,6 +24,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.crash.domain.Cliente;
 import com.crash.domain.dto.ClienteDTO;
 import com.crash.domain.dto.ClienteNewDTO;
+import com.crash.domain.dto.EmailDTO;
 import com.crash.service.ClienteService;
 
 @RestController
@@ -40,8 +41,8 @@ public class ClienteResource {
 	}
 	
 	@GetMapping(value = "/email")
-	public ResponseEntity<Cliente> findByEmail(@RequestParam("value") String value) {
-		Cliente obj = service.findByEmail(value);
+	public ResponseEntity<Cliente> findByEmail(@RequestParam("value") String email) {
+		Cliente obj = service.findByEmail(email);
 		return ResponseEntity.ok().body(obj);
 	}
 	

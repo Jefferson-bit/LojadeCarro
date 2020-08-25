@@ -64,6 +64,7 @@ public class DBService{
 			
 		veiRepository.saveAll(Arrays.asList(vei1,vei2,vei3,vei4,vei5,vei6));
 		
+		
 		Cliente cli1 = new Cliente(null, "Crash", "crashnight089@gmail.com", pe.encode("123"));
 		Cliente cli2 = new Cliente(null, "Alex", "alex@gmail.com", pe.encode("123"));
 		cli2.addPerfil(Perfil.ADMIN);

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 
@@ -17,9 +18,9 @@ public class VeiculoNewDTO implements Serializable {
 	@NotEmpty(message = "Preenchimento Obrigatorio")
 	@Length(min = 5, max = 150, message = "Minimo de 5 a 150 caracteres")
 	private String modelo;
-	@NotEmpty(message = "Preenchimento Obrigatorio")
+	@NotNull
 	private Date ano;
-	@NotEmpty(message = "Preenchimento Obrigatorio")
+	@NotNull
 	private Double preco;
 	@NotEmpty(message = "Preenchimento Obrigatorio")
 	private String tipoVeiculo;
@@ -31,11 +32,9 @@ public class VeiculoNewDTO implements Serializable {
 	@NotEmpty(message = "Preenchimento Obrigatorio")
 	@Length(min = 5, max = 150, message = "Minimo de 5 a 150 caracteres")
 	private String cor;
-	@NotEmpty(message = "Preenchimento Obrigatorio")
-	@Length(min = 5, max = 150, message = "Minimo de 5 a 150 caracteres")
+	@NotNull
 	private Double kmRodado;
-	@NotEmpty(message = "Preenchimento Obrigatorio")
-	@Length(min = 2, max = 8, message = "Minimo de 2 a 8 caracteres")
+	@NotNull
 	private Integer portas;
 	@NotEmpty(message = "Preenchimento Obrigatorio")
 	@Length(min = 5, max = 150, message = "Minimo de 5 a 150 caracteres")

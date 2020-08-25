@@ -45,7 +45,7 @@ public class ClienteService {
 		}
 		Cliente cli = repository.findByEmail(email);
 		if(cli == null) {
-			throw new ResourceNotFoundException(email);
+			throw new ResourceNotFoundException("Email Não encontrado: " + email);
 		}
 		return cli;
 	}
