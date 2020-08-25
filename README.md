@@ -6,7 +6,7 @@ O Administrador terá acesso ao gerenciamento da loja de carro, que consiste na 
 atualização do proprio e até mesmo a exclusão, tornando o sistema bem flexivel e fácil de dar manuntenção. 
 Assim, o sistema disponbiliza visualização publica para os veiculos mostrado e também disponibiliza a administração do sistema
 
-# Tecnologias Utilizadas no Projeto
+# Tecnologias Utilizada no Projeto
 
 Nesse projeto utilizei:
 
